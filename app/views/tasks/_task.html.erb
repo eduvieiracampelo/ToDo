@@ -1,0 +1,21 @@
+<div class="task">
+  <div class="task-content">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span class="task-status <%= task.status %>"><%= task.status.humanize %></span>
+      <span class="task-name"><%= task.name %></span>
+    </div>
+    <% if task.due_date.present? %>
+      <div class="task-due-date">
+        Due: <%= l(task.due_date, format: :short) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="task-actions">
+    <%= form_with(url: update_task_status_path(task), method: :patch, local: true, data: { turbo: false }) do |f| %>
+      <%= f.select :status, options_for_select([["To Do", "todo"], ["In Progress", "in_progress"], ["Done", "done"]], task.status), {}, { class: "form-select", style: "width: auto; padding: 0.25rem 0.5rem; font-size: 0.75rem;" } %>
+      <%= f.submit "Update", class: "btn btn-secondary btn-sm" %>
+    <% end %>
+    <%= link_to "Edit", edit_project_task_path(project, task), class: "btn btn-secondary btn-sm" %>
+    <%= button_to "Delete", project_task_path(project, task), method: :delete, class: "btn btn-danger btn-sm", form: { data: { turbo_confirm: "Are you sure?" } } %>
+  </div>
+</div>

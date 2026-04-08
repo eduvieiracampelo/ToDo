@@ -1,0 +1,44 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title"><%= @project.name %></h1>
+    <% if @project.description.present? %>
+      <p class="card-description"><%= @project.description %></p>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to "Edit Project", edit_project_path(@project), class: "btn btn-secondary" %>
+    <%= link_to "Back", projects_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h2 style="font-size: 1.125rem; font-weight: 600;">Tasks</h2>
+    <%= link_to "Add Task", new_project_task_path(@project), class: "btn btn-primary btn-sm" %>
+  </div>
+
+  <% if @project.tasks.empty? %>
+    <p style="color: var(--color-gray-500); text-align: center; padding: 2rem;">No tasks yet. Add your first task!</p>
+  <% else %>
+    <% if @project.tasks.in_progress.any? %>
+      <h3 class="section-title">In Progress</h3>
+      <div class="tasks-grid">
+        <%= render partial: "tasks/task", collection: @project.tasks.in_progress, locals: { project: @project } %>
+      </div>
+    <% end %>
+
+    <% if @project.tasks.todo.any? %>
+      <h3 class="section-title">To Do</h3>
+      <div class="tasks-grid">
+        <%= render partial: "tasks/task", collection: @project.tasks.todo, locals: { project: @project } %>
+      </div>
+    <% end %>
+
+    <% if @project.tasks.done.any? %>
+      <h3 class="section-title">Done</h3>
+      <div class="tasks-grid">
+        <%= render partial: "tasks/task", collection: @project.tasks.done, locals: { project: @project } %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
