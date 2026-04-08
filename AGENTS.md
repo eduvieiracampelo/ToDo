@@ -56,6 +56,14 @@ bin/importmap audit                  # Scan JS dependencies
 bin/ci
 ```
 
+### Session Management
+```bash
+# Load previous session (read session ID)
+cat session.txt
+
+# To restore context, reference session ID: 1775665204
+```
+
 ---
 
 ## Code Style Guidelines
