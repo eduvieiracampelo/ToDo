@@ -1,78 +1,82 @@
-# Project Manager
+# Gerenciador de Tarefas
 
-A simple project and task management application built with Ruby on Rails 8.
+Um aplicativo de gerenciamento de projetos e tarefas construído com Ruby on Rails 8.
 
-## Features
+## Funcionalidades
 
-- **Projects**: Create, edit, and delete projects
-- **Tasks**: Manage tasks within each project with status tracking
-- **Status Workflow**: Track tasks through To Do → In Progress → Done
-- **Due Dates**: Set deadlines for tasks
-- **Dashboard**: View all projects with task statistics
+- **Projetos**: Criar, editar e excluir projetos
+- **Tarefas**: Gerenciar tarefas dentro de cada projeto com acompanhamento de status
+- **Workflow de Status**: Acompanhar tarefas através de A Fazer → Em Progresso → Concluído
+- **Datas**: Definir data de início e término dos projetos, data de vencimento das tarefas
+- **Dashboard**: Visualizar todos os projetos com estatísticas de tarefas
+- **Tema Escuro**: Suporte a modo escuro com alternância automática
+- **Toast Notifications**: Mensagens de feedback animadas
+- **Interface em Português**: Totalmente traduzido para pt-BR
 
-## Tech Stack
+## Stack Técnica
 
 - Ruby 3.4.7
 - Rails 8.1.3
 - SQLite3
 - Hotwire (Turbo + Stimulus)
-- CSS (no framework)
+- Tailwind CSS 4
 
-## Getting Started
+## Começando
 
-### Prerequisites
+### Pré-requisitos
 
 - Ruby 3.4.7
 - Bundler
 
-### Installation
+### Instalação
 
 ```bash
-# Install dependencies
+# Instalar dependências
 bin/setup
 
-# Run migrations
+# Executar migrações
 bin/rails db:migrate
 
-# Start the server
+# Iniciar servidor
 bin/dev
 ```
 
-Visit `http://localhost:3000` to use the application.
+Acesse `http://localhost:3000` para usar o aplicativo.
 
-## Usage
+## Uso
 
-1. **Create a Project**: Click "New Project" and fill in the name and description
-2. **Add Tasks**: On the project page, click "Add Task" to create tasks
-3. **Update Status**: Use the dropdown to change task status (To Do / In Progress / Done)
-4. **Edit/Delete**: Use the buttons to edit or delete projects and tasks
+1. **Criar Projeto**: Clique em "Novo Projeto" e preencha o nome e descrição
+2. **Adicionar Tarefas**: Na página do projeto, clique em "Adicionar Tarefa"
+3. **Atualizar Status**: Use o dropdown para mudar o status da tarefa
+4. **Editar/Excluir**: Use os botões para editar ou excluir projetos e tarefas
+5. **Alternar Tema**: Clique no ícone sol/lua no header para alternar entre temas claro e escuro
 
-## Running Tests
+## Executando Testes
 
 ```bash
 bin/rails test
 ```
 
-## Code Quality
+## Qualidade de Código
 
 ```bash
-# Run RuboCop linter
+# Executar RuboCop
 bin/rubocop
 
-# Run security scans
+# Executar varredura de segurança
 bin/brakeman --no-pager
 bin/bundler-audit
 ```
 
 ## CI/CD
 
-The project includes GitHub Actions for:
-- Ruby security scanning (Brakeman)
-- Gem vulnerability scanning (bundler-audit)
-- JavaScript dependency audit
-- RuboCop linting
-- Test suite
+O projeto inclui GitHub Actions para:
+- Varredura de segurança Ruby (Brakeman)
+- Varredura de vulnerabilidade de gems (bundler-audit)
+- Audit de dependências JavaScript
+- Linting RuboCop
+- Suite de testes
 
-## License
+## Licença
 
-This project is available for educational purposes.
+Este projeto está disponível para fins educacionais.

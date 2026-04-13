@@ -1,21 +1,27 @@
-<div class="task">
-  <div class="task-content">
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <span class="task-status <%= task.status %>"><%= task.status.humanize %></span>
-      <span class="task-name"><%= task.name %></span>
+<div id="task_<%= task.id %>" class="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+  <div class="flex-1">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+        <%= case task.status
+            when 'todo' then 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+            when 'in_progress' then 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
+            when 'done' then 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+            end %>">
+        <%= t("status.#{task.status}") %>
+      </span>
+      <span class="font-medium text-gray-900 dark:text-white"><%= task.name %></span>
     </div>
     <% if task.due_date.present? %>
-      <div class="task-due-date">
-        Due: <%= l(task.due_date, format: :short) %>
-      </div>
+      <div class="text-xs text-gray-500 mt-1 dark:text-gray-400"><%= t("dates.due") %>: <%= l(task.due_date, format: :short) %></div>
     <% end %>
   </div>
-  <div class="task-actions">
+  <div class="flex gap-2">
+    <%= link_to t("tasks.view"), project_task_path(project, task), class: "px-2 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 text-xs dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
     <%= form_with(url: update_task_status_path(task), method: :patch, local: true, data: { turbo: false }) do |f| %>
-      <%= f.select :status, options_for_select([["To Do", "todo"], ["In Progress", "in_progress"], ["Done", "done"]], task.status), {}, { class: "form-select", style: "width: auto; padding: 0.25rem 0.5rem; font-size: 0.75rem;" } %>
-      <%= f.submit "Update", class: "btn btn-secondary btn-sm" %>
+      <%= f.select :status, options_for_select([[t("status.todo"), "todo"], [t("status.in_progress"), "in_progress"], [t("status.done"), "done"]], task.status), {}, { class: "px-2 py-1 text-xs border border-gray-300 rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" } %>
+      <%= f.submit t("tasks.update_status"), class: "px-2 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 text-xs dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
     <% end %>
-    <%= link_to "Edit", edit_project_task_path(project, task), class: "btn btn-secondary btn-sm" %>
-    <%= button_to "Delete", project_task_path(project, task), method: :delete, class: "btn btn-danger btn-sm", form: { data: { turbo_confirm: "Are you sure?" } } %>
+    <%= link_to t("tasks.edit"), edit_project_task_path(project, task), class: "px-2 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 text-xs dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
+    <%= button_to t("tasks.delete"), project_task_path(project, task), method: :delete, class: "px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-xs", form: { data: { turbo_confirm: "Are you sure?" } } %>
   </div>
 </div>

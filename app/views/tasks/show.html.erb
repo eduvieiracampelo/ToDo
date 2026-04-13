@@ -1,0 +1,36 @@
+<div class="mb-6">
+  <h1 class="text-2xl font-semibold dark:text-white"><%= @task.name %></h1>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200 p-6 dark:bg-gray-800 dark:border-gray-700">
+  <div class="mb-4">
+    <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= t("status.todo") %></span>
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ml-2
+      <%= case @task.status
+          when 'todo' then 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+          when 'in_progress' then 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
+          when 'done' then 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+          end %>">
+      <%= t("status.#{@task.status}") %>
+    </span>
+  </div>
+
+  <% if @task.description.present? %>
+    <div class="mb-4">
+      <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Descrição</span>
+      <p class="mt-1 text-gray-900 dark:text-white"><%= @task.description %></p>
+    </div>
+  <% end %>
+
+  <% if @task.due_date.present? %>
+    <div class="mb-4">
+      <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= t("dates.due") %></span>
+      <p class="mt-1 text-gray-900 dark:text-white"><%= l(@task.due_date, format: :long) %></p>
+    </div>
+  <% end %>
+
+  <div class="flex gap-2 mt-6">
+    <%= link_to t("tasks.edit"), edit_project_task_path(@project, @task), class: "px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
+    <%= link_to t("projects.back"), @project, class: "px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
+  </div>
+</div>

@@ -12,21 +12,21 @@ class TaskTest < ActiveSupport::TestCase
     project = Project.create!(name: "My Project")
     task = project.tasks.new(status: "todo")
     refute task.valid?
-    assert_includes task.errors[:name], "can't be blank"
+    assert_includes task.errors[:name], "não pode estar em branco"
   end
 
   test "invalid task without status raises error" do
     project = Project.create!(name: "My Project")
     task = project.tasks.new(name: "My Task")
     refute task.valid?
-    assert_includes task.errors[:status], "can't be blank"
+    assert_includes task.errors[:status], "não pode estar em branco"
   end
 
   test "invalid task with invalid status raises error" do
     project = Project.create!(name: "My Project")
     task = project.tasks.new(name: "My Task", status: "invalid_status")
     refute task.valid?
-    assert_includes task.errors[:status], "is not included in the list"
+    assert_includes task.errors[:status], "não está incluído na lista"
   end
 
   test "task belongs to project" do

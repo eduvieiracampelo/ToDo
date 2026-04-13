@@ -1,21 +1,28 @@
 class TasksController < ApplicationController
-  before_action :set_project
-  before_action :set_task, only: [ :edit, :update, :destroy ]
+  before_action :set_project, except: [ :update_status ]
+  before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def new
     @task = @project.tasks.new
   end
 
+  def show
+  end
+
   def create
     @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to @project, notice: "Task was successfully created."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @project, notice: "Task was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   def update

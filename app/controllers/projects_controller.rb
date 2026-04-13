@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
   def index
     @projects = Project.all.includes(:tasks).order(created_at: :desc)
+    @total_projects = Project.count
+    @completed_projects = Project.joins(:tasks).where(tasks: { status: "done" }).distinct.count
+    @pending_projects = Project.where.not(id: Project.joins(:tasks).where(tasks: { status: "done" })).count
   end
 
   def show
@@ -42,6 +45,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :start_date, :end_date)
   end
 end

@@ -1,0 +1,109 @@
+pt-BR:
+  date:
+    formats:
+      short: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      only_day: "%d"
+    month_names:
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+    order:
+      - day
+      - month
+      - year
+  
+  time:
+    formats:
+      short: "%H:%M"
+      long: "%d de %B de %Y às %H:%M"
+  
+  projects:
+    new_title: "Novo Projeto"
+    edit_title: "Editar Projeto"
+    project: "Projeto"
+    create: "Criar Projeto"
+    update: "Atualizar Projeto"
+    cancel: "Cancelar"
+    delete: "Excluir"
+    edit_link: "Editar"
+    back: "Voltar"
+    no_projects: "Nenhum projeto ainda. Crie seu primeiro projeto para começar!"
+    create_link: "Criar Projeto"
+    task_count: "tarefas"
+    done_count: "concluídas"
+    todo_count: "a fazer"
+    in_progress_count: "em progresso"
+    tasks_title: "Tarefas"
+    edit_project: "Editar Projeto"
+  
+  tasks:
+    new_title: "Nova Tarefa"
+    edit_title: "Editar Tarefa"
+    task: "Tarefa"
+    add: "Adicionar Tarefa"
+    create: "Criar Tarefa"
+    update: "Atualizar Tarefa"
+    no_tasks: "Nenhuma tarefa ainda. Adicione sua primeira tarefa!"
+    update_status: "Atualizar"
+    delete: "Excluir"
+    view: "Ver"
+  
+  status:
+    in_progress: "Em Progresso"
+    done: "Concluído"
+    todo: "A Fazer"
+    section_in_progress: "Em Progresso"
+    section_todo: "A Fazer"
+    section_done: "Concluído"
+  
+  dates:
+    started: "Iniciado"
+    due: "Vencimento"
+  
+  messages:
+    created: "Projeto foi criado com sucesso."
+    updated: "Projeto foi atualizado com sucesso."
+    deleted: "Projeto foi excluído com sucesso."
+    task_created: "Tarefa foi criada com sucesso."
+    task_updated: "Tarefa foi atualizada com sucesso."
+    task_deleted: "Tarefa foi excluída com sucesso."
+    task_status_updated: "Status da tarefa foi atualizado."
+  
+  stats:
+    total: "Total de Projetos"
+    completed: "Concluídos"
+    pending: "Pendentes"
+
+  activerecord:
+    models:
+      project:
+        one: "Projeto"
+        other: "Projetos"
+      task:
+        one: "Tarefa"
+        other: "Tarefas"
+    attributes:
+      project:
+        name: "Nome"
+        description: "Descrição"
+        start_date: "Data de Início"
+        end_date: "Data de Término"
+      task:
+        name: "Nome"
+        description: "Descrição"
+        status: "Status"
+        due_date: "Data de Vencimento"
+    errors:
+      messages:
+        blank: "não pode estar em branco"
+        inclusion: "não está incluído na lista"

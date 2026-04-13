@@ -10,7 +10,7 @@ class ProjectTest < ActiveSupport::TestCase
   test "invalid project without name raises error" do
     project = Project.new
     refute project.valid?
-    assert_includes project.errors[:name], "can't be blank"
+    assert_includes project.errors[:name], "não pode estar em branco"
   end
 
   test "project can have description" do
